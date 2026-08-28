@@ -8,7 +8,7 @@ const mockVehicles = [
         plate: "ABC1D23",
         type: "car",
         detectionTime: "2025-08-22T20:42:33.000Z",
-        confidence: 98.50,
+        confidence: 98.55,
         imageUrl: "/images/car.png"
     },
     {

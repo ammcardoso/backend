@@ -1,61 +1,51 @@
-// prisma/seed.ts
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 async function main() {
-    console.log('🌱 Iniciando seed do banco de dados...')
+    console.log('Iniciando seed do banco de dados...')
 
-    // Limpa a tabela antes de popular (útil em desenvolvimento)
-    await prisma.product.deleteMany()
+    await prisma.vehicle.deleteMany()
 
-    // Cria produtos de exemplo
-    const products = await prisma.product.createMany({
+    const vehicles = await prisma.vehicle.createMany({
         data: [
             {
-                title: "Notebook de Última Geração",
-                description: "Um notebook poderoso para trabalho e lazer.",
-                price: 4500.00,
-                imageUrl: "/images/notebook.png",
-                isFeatured: true
+                plate: "ABC1D23",
+                type: "car",
+                detectionTime: new Date("2025-08-22T20:42:33.000Z"),
+                confidence: 98.50,
+                imageUrl: "/images/car.png"
             },
             {
-                title: "Smartphone Avançado",
-                description: "Capture os melhores momentos com uma câmera de alta resolução.",
-                price: 2800.00,
-                imageUrl: "/images/smartphone.png",
-                isFeatured: false
+                plate: "XYZ9E87",
+                type: "motorcycle",
+                detectionTime: new Date("2025-08-22T20:43:10.000Z"),
+                confidence: 94.75,
+                imageUrl: "/images/motorcycle.png"
             },
             {
-                title: "Teclado Mecânico RGB",
-                description: "Alta performance e feedback tátil para gamers e programadores.",
-                price: 350.50,
-                imageUrl: "/images/teclado.png",
-                isFeatured: true
+                plate: "QWE4R56",
+                type: "truck",
+                detectionTime: new Date("2025-08-22T20:44:02.000Z"),
+                confidence: 91.20,
+                imageUrl: "/images/truck.png"
             },
             {
-                title: "Mouse Ergonômico Sem Fio",
-                description: "Conforto e precisão para longas horas de uso.",
-                price: 120.00,
-                imageUrl: "/images/mouse.png",
-                isFeatured: false
-            },
-            {
-                title: "Monitor 4K HDR",
-                description: "Cores vibrantes e detalhes impressionantes para profissionais.",
-                price: 1899.99,
-                imageUrl: "/images/monitor.png",
-                isFeatured: true
+                plate: "JKL7M89",
+                type: "bus",
+                detectionTime: new Date("2025-08-22T20:45:18.000Z"),
+                confidence: 89.90,
+                imageUrl: "/images/bus.png"
             }
         ]
     })
 
-    console.log(`✅ ${products.count} produtos criados com sucesso!`)
+    console.log(`${vehicles.count} veículos registrados com sucesso!`)
 }
 
 main()
     .catch((e) => {
-        console.error('❌ Erro ao popular o banco:', e)
+        console.error('Erro ao popular o banco:', e)
         process.exit(1)
     })
     .finally(async () => {

@@ -1,13 +1,13 @@
 -- CreateTable
-CREATE TABLE "public"."products" (
+CREATE TABLE "public"."vehicles" (
     "id" SERIAL NOT NULL,
-    "title" VARCHAR(255) NOT NULL,
-    "description" TEXT NOT NULL,
-    "price" DECIMAL(10,2) NOT NULL,
+    "plate" VARCHAR(20) NOT NULL,
+    "type" VARCHAR(50) NOT NULL,
+    "detection_time" TIMESTAMP(3) NOT NULL,
+    "confidence" DECIMAL(5,2) NOT NULL,
     "image_url" TEXT NOT NULL,
-    "is_featured" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "products_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "vehicles_pkey" PRIMARY KEY ("id")
 );

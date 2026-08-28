@@ -1,63 +1,51 @@
 import express, { Request, Response } from 'express';
 
-// Cria uma instância da aplicação Express
 const app = express();
-
-// Define a porta em que o servidor vai rodar
-// Usamos 3001 para não conflitar com o front-end (que geralmente usa 3000 ou 5173)
 const PORT = 3001;
-
-// --- DADOS FALSOS (MOCK) ---
-// Vamos criar um array de produtos que segue a mesma estrutura do front-end
-const mockProducts = [
+const mockVehicles = [
     {
         id: 1,
-        title: "Notebook de Última Geração",
-        description: "Um notebook poderoso para trabalho e lazer.",
-        price: 4500.00,
-        imageUrl: "/images/notebook.png", // Usando caminhos relativos como no projeto front-end
-        isFeatured: true
+        plate: "ABC1D23",
+        type: "car",
+        detectionTime: "2025-08-22T20:42:33.000Z",
+        confidence: 98.50,
+        imageUrl: "/images/car.png"
     },
     {
         id: 2,
-        title: "Smartphone Avançado",
-        description: "Capture os melhores momentos com uma câmera de alta resolução.",
-        price: 2800.00,
-        imageUrl: "/images/smartphone.png"
+        plate: "XYZ9E87",
+        type: "motorcycle",
+        detectionTime: "2025-08-22T20:43:10.000Z",
+        confidence: 94.75,
+        imageUrl: "/images/motorcycle.png"
     },
     {
         id: 3,
-        title: "Teclado Mecânico RGB",
-        description: "Alta performance e feedback tátil para gamers e programadores.",
-        price: 350.50,
-        imageUrl: "/images/teclado.png",
-        isFeatured: true
+        plate: "QWE4R56",
+        type: "truck",
+        detectionTime: "2025-08-22T20:44:02.000Z",
+        confidence: 91.20,
+        imageUrl: "/images/truck.png"
     },
     {
         id: 4,
-        title: "Mouse Ergonômico Sem Fio",
-        description: "Conforto e precisão para longas horas de uso.",
-        price: 120.00,
-        imageUrl: "/images/mouse.png"
+        plate: "JKL7M89",
+        type: "bus",
+        detectionTime: "2025-08-22T20:45:18.000Z",
+        confidence: 89.90,
+        imageUrl: "/images/bus.png"
     }
 ];
-// --- FIM DOS DADOS FALSOS ---
-
-// Define uma rota inicial (endpoint) para o nosso servidor
-// Quando alguém acessar a raiz ('/') com o método GET...
 app.get('/', (req: Request, res: Response) => {
-    // ...nós responderemos com um objeto JSON.
-    res.json({ message: 'Olá, mundo! Bem-vindo à API do nosso Catálogo de Produtos!' });
+    res.json({ message: 'Olá, mundo! Bem-vindo à API de Veículos!' });
 });
 
-// NOVO ENDPOINT: Listagem de todos os produtos
-app.get('/api/products', (req: Request, res: Response) => {
-    console.log('Requisição para /api/products recebida!');
-    res.json(mockProducts);
+app.get('/api/vehicles', (req: Request, res: Response) => {
+    console.log('Requisição para /api/vehicles recebida!');
+    res.json(mockVehicles);
 });
 
-// Inicia o servidor e o faz "escutar" por requisições na porta definida
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando com sucesso em http://localhost:${PORT}`);
+    console.log(`Servidor rodando com sucesso em http://localhost:${PORT}`);
 });
 

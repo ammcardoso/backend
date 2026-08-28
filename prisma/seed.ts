@@ -36,6 +36,13 @@ async function main() {
                 detectionTime: new Date("2025-08-22T20:45:18.000Z"),
                 confidence: 89.90,
                 imageUrl: "/images/bus.png"
+            },
+            {
+                plate: "MNO1P23",
+                type: "van",
+                detectionTime: new Date("2025-08-22T20:45:18.000Z"),
+                confidence: 96.10,
+                imageUrl: "/images/van.png"
             }
         ]
     })

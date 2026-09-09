@@ -118,6 +118,34 @@ curl -X GET http://localhost:3001/api/vehicles
 curl -X GET http://localhost:3001/api/vehicles/1
 ```
 
+**Criar um novo veículo (POST):**
+```bash
+curl -X POST http://localhost:3001/api/vehicles \
+-H "Content-Type: application/json" \
+-d '{
+  "plate": "ABC1234",
+  "type": "car",
+  "detectionTime": "2023-10-15T14:30:00Z",
+  "confidence": 98.5,
+  "imageUrl": "/images/car.png"
+}'
+```
+
+**Atualizar um veículo (PUT):**
+
+```bash
+curl -X PUT http://localhost:3001/api/vehicles/1 \
+-H "Content-Type: application/json" \
+-d '{
+  "confidence": 99.9,
+  "type": "truck"
+}'
+```
+**Deletar um veículo (DELETE):**
+
+```bash
+curl -X DELETE http://localhost:3001/api/vehicles/1
+```
 ## Validação de Dados (Zod)
 
 As rotas de criação (`POST`) e atualização (`PUT`) utilizam a biblioteca **Zod** para garantir a integridade dos dados enviados no corpo da requisição (payload). 

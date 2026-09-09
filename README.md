@@ -6,6 +6,7 @@
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 
 ---
 
@@ -93,7 +94,10 @@ Abaixo estão as rotas disponíveis na aplicação:
 | :--- | :--- | :--- |
 | `GET` | `/` | Retorna o status da API. |
 | `GET` | `/api/vehicles` | Retorna os detalhes das passagens dos veículos. |
-| `GET` | `/api/vehicles/:id` | Retorna os detalhes  das passagens dos veículos pelo `ID`. |
+| `GET` | `/api/vehicles/:id` | Retorna os detalhes das passagens dos veículos pelo `ID`. |
+| `POST` | `/api/vehicles` | Cria um novo registro de veículo (com validação Zod). |
+| `PUT` | `/api/vehicles/:id` | Atualiza parcialmente os dados de um veículo pelo `ID` (com validação Zod). |
+| `DELETE` | `/api/vehicles/:id` | Remove o registro de um veículo pelo `ID`. |
 
 ### Exemplos de Requisição
 
@@ -113,6 +117,19 @@ curl -X GET http://localhost:3001/api/vehicles
 ```bash
 curl -X GET http://localhost:3001/api/vehicles/1
 ```
+
+## Validação de Dados (Zod)
+
+As rotas de criação (`POST`) e atualização (`PUT`) utilizam a biblioteca **Zod** para garantir a integridade dos dados enviados no corpo da requisição (payload). 
+
+O formato esperado para o veículo é:
+- `plate`: String com exatamente 7 caracteres.
+- `type`: Deve ser `'car'`, `'truck'`, `'bus'`, ou `'motorcycle'`.
+- `detectionTime`: Data válida (formato ISO 8601).
+- `confidence`: Número entre 0 e 100.
+- `imageUrl`: String da URL da imagem (não pode ser vazia).
+
+*Caso os dados enviados sejam inválidos, a API retornará o status `400 Bad Request` detalhando os erros.*
 
 ---
 *Desenvolvido por Adriana Cardoso para fins acadêmicos.*

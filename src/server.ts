@@ -59,13 +59,18 @@ app.get('/api/vehicles/:id', async (req: Request, res: Response) => {
 
 // Schema de criação de passagem do veículo
 export const createVehicleSchema = z.object({
-    plate: z.string().length(7, 'Placa deve ter exatamente 7 caracteres'),
-    type: z.enum(['car', 'truck', 'bus', 'motorcycle']),
-    detectionTime: z.coerce.date(),
-    confidence: z.coerce.number().min(0).max(100),
-    imageUrl: z.string().min(1, 'imageUrl não pode ser vazio'),
+    plate: z.string().length(7, 'Placa deve ter exatamente 7 caracteres.'),
+    type: z.enum(['car', 'truck', 'bus', 'motorcycle'], {
+        message: 'Tipo inválido. Escolha entre: car, truck, bus ou motorcycle.'
+    }),
+    detectionTime: z.coerce.date({
+        message: 'Informe uma data e hora de detecção válidas.'
+    }),
+    confidence: z.coerce.number({
+        message: 'A confiança deve ser um número válido.'
+    }).min(0, 'A confiança mínima é 0.').max(100, 'A confiança máxima é 100.'),
+    imageUrl: z.string().min(1, 'O campo imageUrl não pode ser vazio.'),
 });
-
 
 /**
  * POST /api/vehicles — cria com validação
